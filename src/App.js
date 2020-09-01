@@ -97,16 +97,14 @@ function App() {
       <SelectCustomer customers={customers} setCustomers={setCustomers} />
       <div css={theatre}>
         {Object.keys(currentSeats).map((category)=>(
-          <div>
+          <div key={category}>
             <div css={textLeft}>{category}</div>
             {Object.keys(currentSeats[category]).map((row)=>(
               <div css={flex}>
                 <div>{row}</div>
-                <div>
-                  {currentSeats[category][row].map((seat, i)=>(
+                <div>{currentSeats[category][row].map((seat, i)=>(
                     <button onClick={()=>{setSeats(category, row, i)}} disabled={seat===1} css={[seatCSS, seat===2 ? active: '']}>{i+1}</button>       
-                  ))}
-                </div>
+                  ))}</div>
               </div>
             ))}
             <hr/>
